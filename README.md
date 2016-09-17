@@ -9,6 +9,7 @@ Optional arguments:
 	--output-file
 
 	-d              Delimiter (default: ,)
+	--delimiter
 ```
 
 Usage example:
