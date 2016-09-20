@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 # Marijus Siliunas PS 2 gr. 4 k. 1310490
 
-set -o errexit
+set -o errexit	# Exit if any command fails
 
 function help {
     echo -e "Convert CSV file to valid HTML table.\n"
@@ -45,16 +45,16 @@ if [ -z "${input_file}" ]; then
     exit
 fi
 
-if [ ! -f $input_file ]; then
+if [ ! -f "${input_file}" ]; then
     echo "ERROR! Given file does not exist!"
     help
     exit
 fi
 
-output=${output_file:-"$input_file.html"}
+output=${output_file:-"${input_file}.html"}
 IFS=${delimiter:-,}
 
-echo "Converting $input_file to HTML..."
+echo "Converting ${input_file} to HTML..."
 {
     read -r -a headers
 
@@ -62,7 +62,7 @@ echo "Converting $input_file to HTML..."
 
     for header in "${headers[@]}"
     do
-        echo "<th>$header</th>"
+        echo "<th>${header}</th>"
     done
 
     echo "</tr>"
@@ -78,6 +78,6 @@ echo "Converting $input_file to HTML..."
     echo "</table>"
 } < $input_file >> $output
 
-echo "Finished! Output saved to $output."
+echo "Finished! Output saved to ${output}."
 
 exit
